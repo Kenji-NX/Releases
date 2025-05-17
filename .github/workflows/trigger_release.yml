@@ -45,11 +45,15 @@ jobs:
           mv AppImage*/* artifacts
           for arch in amd64 aarch64
           do
-            zip -r artifacts/Ryujinx-Windows-${{ env.VERSION }}-${arch}.zip "Windows ($arch)"/* 
-            zip -r artifacts/Ryujinx-Linux-${{ env.VERSION }}-${arch}.zip "Linux ($arch)"/* 
+            cd "Windows ($arch)"
+            zip -r artifacts/Ryujinx-Windows-${{ env.VERSION }}-${arch}.zip * 
+            cd ../"Linux ($arch)"
+            zip -r artifacts/Ryujinx-Linux-${{ env.VERSION }}-${arch}.zip * 
+            cd ..
           done
 
-          zip -r artifacts/Ryujinx-macOS-${{ env.VERSION }}-universal.zip "macOS (universal)"/Ryujinx.app
+          cd "macOS (universal)"
+          zip -r artifacts/Ryujinx-macOS-${{ env.VERSION }}-universal.zip Ryujinx.app
 
       - name: Create release
         id: create_release

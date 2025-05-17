@@ -36,9 +36,11 @@ do
     fi
 done
 
-cp -r Ryujinx.app/Contents/{Info.plist,PkgInfo,_CodeSignature} ../Ryujinx.app/Contents/
+cp -r Ryujinx.app/Contents/{Info.plist,PkgInfo} ../Ryujinx.app/Contents/
 
 cd ..
+codesign --entitlements entitlements.xml -f --deep -s - Ryujinx.app
+
 mkdir -p ../../../artifacts/Ryujinx.app
 cp -r Ryujinx.app/* ../../../artifacts/Ryujinx.app
 
