@@ -26,13 +26,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: "AppImage (amd64)"
-          path: artifacts/Ryujinx-${{ env.VERSION }}-amd64.AppImage*
+          path: artifacts/Ryujinx-*-amd64.AppImage*
 
       - name: Upload aarch64 AppImage
         uses: actions/upload-artifact@v4
         with:
           name: "AppImage (aarch64)"
-          path: artifacts/Ryujinx-${{ env.VERSION }}-aarch64.AppImage*
+          path: artifacts/Ryujinx-*-aarch64.AppImage*
 
   build_win:
     runs-on: windows-latest
@@ -52,13 +52,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: "Windows (amd64)"
-          path: artifacts/Ryujinx-Windows-${{ env.VERSION }}-amd64
+          path: artifacts/Ryujinx-Windows-amd64
 
       - name: Upload aarch64 zip
         uses: actions/upload-artifact@v4
         with:
           name: "Windows (aarch64)"
-          path: artifacts/Ryujinx-Windows-${{ env.VERSION }}-aarch64
+          path: artifacts/Ryujinx-Windows-aarch64
 
   build_macos:
     runs-on: macos-latest
