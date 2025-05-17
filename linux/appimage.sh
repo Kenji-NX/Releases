@@ -24,6 +24,10 @@ export OUTDIR=../artifacts
 rm -rf $BUILDDIR
 
 dotnet publish src/Ryujinx -c Release -r $TARGET -p:PublishSingleFile=true -p:DebugSymbols=false -o $BUILDDIR
+
+mkdir -p ../artifacts
+cp -r $BUILDDIR ../artifacts/Ryujinx-$VERSION-$ARCH
+
 mkdir -p tools
 export PATH="$PATH:$(readlink -f tools)"
 
@@ -32,7 +36,6 @@ wget -q -O tools/appimagetool "https://github.com/AppImage/appimagetool/releases
 chmod +x tools/appimagetool
 
 export UFLAG="gh-releases-zsync|Kenji-NX|Releases|latest|*-$ARCH.AppImage.zsync"
-
 
 ## AppImage building ##
 

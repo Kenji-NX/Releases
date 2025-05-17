@@ -61,17 +61,17 @@ jobs:
           path: artifacts/Ryujinx-${{ env.VERSION }}-aarch64.AppImage*
 
       - name: Upload amd64 zip
-        if: matrix.name == 'Windows'
+        if: matrix.name != 'macOS'
         uses: actions/upload-artifact@v4
         with:
-          name: "Windows (amd64)"
+          name: "${{ matrix.name }} (amd64)"
           path: artifacts/Ryujinx-${{ env.VERSION }}-amd64
 
       - name: Upload aarch64 zip
-        if: matrix.name == 'Windows'
+        if: matrix.name != 'macOS'
         uses: actions/upload-artifact@v4
         with:
-          name: "Windows (aarch64)"
+          name: "${{ matrix.name }} (aarch64)"
           path: artifacts/Ryujinx-${{ env.VERSION }}-aarch64
 
       - name: Upload universal app
