@@ -36,7 +36,7 @@ do
     fi
 done
 
-cp -r Ryujinx.app/Contents/{Info.plist,PkgInfo} ../Ryujinx.app/Contents/
+cp -r Ryujinx.app/Contents/{Info.plist,PkgInfo,_CodeSignature} ../Ryujinx.app/Contents/
 
 cd ..
 mkdir -p ../../../artifacts/Ryujinx.app
