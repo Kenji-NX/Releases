@@ -16,7 +16,7 @@ jobs:
 
       - name: Grab version
         run: |
-          tag_name=$(echo ${{ github.ref }} | grep -oE "[^/]+$")
+          tag_name=$(git describe --tags --abbrev=0)
           echo "VERSION=$tag_name" >> $GITHUB_ENV
 
       - name: Build
@@ -42,7 +42,7 @@ jobs:
       - name: Grab version
         shell: bash
         run: |
-          tag_name=$(echo ${{ github.ref }} | grep -oE "[^/]+$")
+          tag_name=$(git describe --tags --abbrev=0)
           echo "VERSION=$tag_name" >> $GITHUB_ENV
 
       - name: Build
@@ -67,7 +67,7 @@ jobs:
 
       - name: Grab version
         run: |
-          tag_name=$(echo ${{ github.ref }} | grep -oE "[^/]+$")
+          tag_name=$(git describe --tags --abbrev=0)
           echo "VERSION=$tag_name" >> $GITHUB_ENV
 
       - name: Build
