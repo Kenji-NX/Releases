@@ -47,17 +47,14 @@ jobs:
           for arch in amd64 aarch64
           do
             cd "Windows ($arch)"
-            ls
-            echo "\n"
-            ls ..
-            zip -r artifacts/Ryujinx-Windows-${{ env.VERSION }}-${arch}.zip * 
+            zip -r ../artifacts/Ryujinx-Windows-${{ env.VERSION }}-${arch}.zip * 
             cd ../"Linux ($arch)"
-            zip -r artifacts/Ryujinx-Linux-${{ env.VERSION }}-${arch}.zip * 
+            zip -r ../artifacts/Ryujinx-Linux-${{ env.VERSION }}-${arch}.zip * 
             cd ..
           done
 
           cd "macOS (universal)"
-          zip -r artifacts/Ryujinx-macOS-${{ env.VERSION }}-universal.zip Ryujinx.app
+          zip -r ../artifacts/Ryujinx-macOS-${{ env.VERSION }}-universal.zip Ryujinx.app
 
       - name: Create release
         id: create_release
