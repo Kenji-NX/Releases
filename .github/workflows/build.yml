@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-tags: true
+          fetch-depth: 0
 
       - name: Grab version
         run: |
@@ -42,6 +43,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-tags: true
+          fetch-depth: 0
 
       - name: Grab version
         shell: bash
@@ -70,6 +72,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-tags: true
+          fetch-depth: 0
 
       - name: Grab version
         run: |
