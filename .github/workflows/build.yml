@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        fetch-tags: true
+        with:
+          fetch-tags: true
 
       - name: Grab version
         run: |
@@ -39,7 +40,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-        fetch-tags: true
+        with:
+          fetch-tags: true
 
       - name: Grab version
         shell: bash
@@ -66,7 +68,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-        fetch-tags: true
+        with:
+          fetch-tags: true
 
       - name: Grab version
         run: |
