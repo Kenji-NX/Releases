@@ -3,7 +3,7 @@
 set target=%1
 set arch=%2
 
-# TODO: nightly builds
+REM TODO: nightly builds
 set build_dir=bin-%arch%
 set out_dir=..\artifacts
 

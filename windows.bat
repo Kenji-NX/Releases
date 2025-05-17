@@ -1,5 +1,7 @@
 @echo off
 
+REM choco install dotnet-9.0-sdk
+
 git clone https://git.ryujinx.app/kenji-nx/ryujinx.git
 
 cd ryujinx

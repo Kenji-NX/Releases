@@ -2,6 +2,8 @@
 
 set +e
 
+brew install fd # dotnet-sdk
+
 git clone https://git.ryujinx.app/kenji-nx/ryujinx.git
 
 cd ryujinx
