@@ -1,5 +1,6 @@
-#!/bin/sh
-sudo apt install -y zsync desktop-file-utils appstream dotnet-sdk-9.0
+#!/bin/sh -ex
+
+sudo apt install -y zsync desktop-file-utils appstream
 
 git clone https://git.ryujinx.app/kenji-nx/ryujinx.git
 
