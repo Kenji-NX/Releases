@@ -54,7 +54,7 @@ jobs:
           done
 
           cd "macOS (universal)"
-          zip -r ../artifacts/Ryujinx-macOS-${{ env.VERSION }}-universal.zip Ryujinx.app
+          zip -r ../artifacts/Ryujinx-macOS-${{ env.VERSION }}-universal.zip Ryujinx.tar.gz
 
       - name: Create release
         id: create_release

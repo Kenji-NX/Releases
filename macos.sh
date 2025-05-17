@@ -48,3 +48,6 @@ cp -r Ryujinx.app/* ../../../artifacts/Ryujinx.app
 cd ../../../
 mkdir -p artifacts/Ryujinx.app/Contents/Resources
 cp Ryujinx.icns artifacts/Ryujinx.app/Contents/Resources
+
+cd artifacts
+tar czf Ryujinx.tar.gz Ryujinx.app

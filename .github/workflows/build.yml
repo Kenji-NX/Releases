@@ -79,4 +79,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: "macOS (universal)"
-          path: artifacts/
+          path: artifacts/Ryujinx.tar.gz
