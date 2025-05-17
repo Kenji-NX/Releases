@@ -40,6 +40,7 @@ cp -r Ryujinx.app/Contents/{Info.plist,PkgInfo} ../Ryujinx.app/Contents/
 
 cd ..
 codesign --entitlements entitlements.xml -f --deep -s - Ryujinx.app
+chmod a+c Ryujinx.app/Contents/MacOS/Ryujinx
 
 mkdir -p ../../../artifacts/Ryujinx.app
 cp -r Ryujinx.app/* ../../../artifacts/Ryujinx.app
