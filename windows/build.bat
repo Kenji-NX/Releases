@@ -11,4 +11,4 @@ FOR /F "tokens=*" %a in ('git describe --tags --abbrev=0') do SET version=%a
 
 dotnet publish -c Release -r %target% -p:PublishSingleFile=true -p:DebugSymbols=false -o %build_dir%
 
-7z a -tzip %out_dir%\Ryujinx-Windows-%version%-%arch%.zip %build_dir%\*
+cp -r %build_dir% %out_dir%\Ryujinx-Windows-%version%-%arch%
