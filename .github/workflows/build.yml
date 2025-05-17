@@ -36,11 +36,13 @@ jobs:
           fetch-depth: 0
       
       - name: Grab version
+        shell: bash
         run: |
           tag_name=$(git describe --tags --abbrev=0)
           echo "VERSION=$tag_name" >> $GITHUB_ENV
 
       - name: Build
+        shell: bash
         run: ./${{ matrix.script }}.sh
 
       - name: Upload amd64 AppImage
