@@ -2,7 +2,7 @@
 
 export VERSION=`git describe --tags --abbrev=0`
 
-# git clone https://git.ryujinx.app/kenji-nx/ryujinx.git
+git clone https://git.ryujinx.app/kenji-nx/ryujinx.git
 cd ryujinx
 git checkout $VERSION
 

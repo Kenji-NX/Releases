@@ -40,7 +40,7 @@ cp -r Ryujinx.app/Contents/{Info.plist,PkgInfo} ../Ryujinx.app/Contents/
 
 cd ..
 rm -rf ../../../artifacts/Ryujinx.app
-cp -r Ryujinx.app ../../../artifacts
+cp -r Ryujinx.app/* ../../../artifacts/Ryujinx.app
 
 cd ../../../
 mkdir -p artifacts/Ryujinx.app/Contents/Resources

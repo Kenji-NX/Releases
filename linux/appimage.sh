@@ -30,7 +30,6 @@ export PATH="$PATH:$(readlink -f tools)"
 # Setup appimagetool
 wget -q -O tools/appimagetool "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
 chmod +x tools/appimagetool
-chmod +x ./build-appimage.sh
 
 export UFLAG="gh-releases-zsync|Kenji-NX|Releases|latest|*-$ARCH.AppImage.zsync"
 
