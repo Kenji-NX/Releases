@@ -40,12 +40,16 @@ jobs:
       - name: Package artifacts properly
         shell: bash
         run: |
+          set -ex
           mkdir artifacts
 
           mv AppImage*/* artifacts
           for arch in amd64 aarch64
           do
             cd "Windows ($arch)"
+            ls
+            echo "\n"
+            ls ..
             zip -r artifacts/Ryujinx-Windows-${{ env.VERSION }}-${arch}.zip * 
             cd ../"Linux ($arch)"
             zip -r artifacts/Ryujinx-Linux-${{ env.VERSION }}-${arch}.zip * 
