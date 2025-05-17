@@ -1,0 +1,82 @@
+name: Build
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            name: "Linux"
+            script: "linux"
+          
+          - os: macos-latest
+            name: "macOS"
+            script: "macos"
+          
+          - os: windows-latest
+            name: "Windows"
+            script: "windows"
+
+    runs-on: ${{ matrix.os }}  
+    name: ${{ matrix.name }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-tags: true
+          fetch-depth: 0
+      
+      - name: Grab version
+        shell: bash
+        run: |
+          tag_name=$(git describe --tags --abbrev=0)
+          echo "VERSION=$tag_name" >> $GITHUB_ENV
+
+      - name: Build
+        shell: bash
+        run: ./${{ matrix.script }}.sh
+
+      - name: Upload amd64 AppImage
+        if: matrix.name == 'Linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: "AppImage (amd64)"
+          path: artifacts/Ryujinx-${{ env.VERSION }}-amd64.AppImage*
+
+      - name: Upload aarch64 AppImage
+        if: matrix.name == 'Linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: "AppImage (aarch64)"
+          path: artifacts/Ryujinx-${{ env.VERSION }}-aarch64.AppImage*
+
+      - name: Upload amd64 zip
+        if: matrix.name != 'macOS'
+        uses: actions/upload-artifact@v4
+        with:
+          name: "${{ matrix.name }} (amd64)"
+          path: artifacts/Ryujinx-${{ env.VERSION }}-amd64
+
+      - name: Upload aarch64 zip
+        if: matrix.name != 'macOS'
+        uses: actions/upload-artifact@v4
+        with:
+          name: "${{ matrix.name }} (aarch64)"
+          path: artifacts/Ryujinx-${{ env.VERSION }}-aarch64
+
+      - name: Upload universal app
+        if: matrix.name == 'macOS'
+        uses: actions/upload-artifact@v4
+        with:
+          name: "macOS (universal)"
+          path: artifacts/Ryujinx.tar.gz

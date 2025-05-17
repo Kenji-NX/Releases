@@ -1,0 +1,65 @@
+name: Build Application and Make Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  build_release:
+    name: Build Release
+    uses: ./.github/workflows/build.yml
+
+  create_release:
+    needs: build_release
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Grab version
+        shell: bash
+        run: |
+          tag_name=$(git describe --tags --abbrev=0)
+          echo "VERSION=$tag_name" >> $GITHUB_ENV
+
+      - name: Package artifacts properly
+        shell: bash
+        run: |
+          set -ex
+          mkdir artifacts
+
+          mv AppImage*/* artifacts
+          for arch in amd64 aarch64
+          do
+            cd "Windows ($arch)"
+            zip -r ../artifacts/Ryujinx-Windows-${{ env.VERSION }}-${arch}.zip * 
+            cd ../"Linux ($arch)"
+            zip -r ../artifacts/Ryujinx-Linux-${{ env.VERSION }}-${arch}.zip * 
+            cd ..
+          done
+
+          cd "macOS (universal)"
+          zip -r ../artifacts/Ryujinx-macOS-${{ env.VERSION }}-universal.zip Ryujinx.tar.gz
+
+      - name: Create release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          name: Kenji-NX ${{ env.VERSION }}
+          draft: true
+          prerelease: false
+          files: artifacts/*
