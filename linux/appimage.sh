@@ -20,7 +20,6 @@ fi
 # TODO: nightly builds
 export BUILDDIR=bin-$ARCH
 export OUTDIR=../artifacts
-export VERSION=`git describe --tags --abbrev=0`
 
 rm -rf $BUILDDIR
 
@@ -57,8 +56,6 @@ appimagetool --comp zstd --mksquashfs-opt -Xcompression-level --mksquashfs-opt 2
     AppDir "$OUTDIR"/Ryujinx-$VERSION-$ARCH.AppImage
 
 # Move zsync file needed for delta updates
-if [ "$RELEASE" = "1" ]; then
-    mv ./*.AppImage.zsync "$OUTDIR"
-fi
+mv ./*.AppImage.zsync "$OUTDIR"
 
 chmod a+x "$OUTDIR"/Ryujinx-$VERSION-$ARCH.AppImage
