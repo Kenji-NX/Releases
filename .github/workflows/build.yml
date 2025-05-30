@@ -46,37 +46,37 @@ jobs:
         shell: bash
         run: ./${{ matrix.script }}.sh
 
-      - name: Upload amd64 AppImage
+      - name: Upload x64 AppImage
         if: matrix.name == 'Linux'
         uses: actions/upload-artifact@v4
         with:
-          name: "AppImage (amd64)"
-          path: artifacts/Ryujinx-${{ env.VERSION }}-amd64.AppImage*
+          name: "AppImage (x64)"
+          path: artifacts/ryujinx*x64.AppImage*
 
-      - name: Upload aarch64 AppImage
+      - name: Upload arm64 AppImage
         if: matrix.name == 'Linux'
         uses: actions/upload-artifact@v4
         with:
-          name: "AppImage (aarch64)"
-          path: artifacts/Ryujinx-${{ env.VERSION }}-aarch64.AppImage*
+          name: "AppImage (arm64)"
+          path: artifacts/ryujinx*arm64.AppImage*
 
-      - name: Upload amd64 zip
+      - name: Upload x64 zip
         if: matrix.name != 'macOS'
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ matrix.name }} (amd64)"
-          path: artifacts/Ryujinx-${{ env.VERSION }}-amd64
+          name: "${{ matrix.name }} (x64)"
+          path: artifacts/Ryujinx-${{ env.VERSION }}-x64
 
-      - name: Upload aarch64 zip
+      - name: Upload arm64 zip
         if: matrix.name != 'macOS'
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ matrix.name }} (aarch64)"
-          path: artifacts/Ryujinx-${{ env.VERSION }}-aarch64
+          name: "${{ matrix.name }} (arm64)"
+          path: artifacts/Ryujinx-${{ env.VERSION }}-arm64
 
       - name: Upload universal app
         if: matrix.name == 'macOS'
         uses: actions/upload-artifact@v4
         with:
           name: "macOS (universal)"
-          path: artifacts/Ryujinx.tar.gz
+          path: artifacts/Ryujinx.zip

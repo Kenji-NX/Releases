@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh +ex
 
 sudo add-apt-repository ppa:dotnet/backports
 sudo apt-get update
@@ -10,5 +10,5 @@ git clone https://git.ryujinx.app/kenji-nx/ryujinx.git
 cd ryujinx
 git checkout $VERSION
 
-../linux/appimage.sh amd64
-../linux/appimage.sh aarch64
+../linux/appimage.sh x64
+../linux/appimage.sh arm64

@@ -4,16 +4,16 @@ export ARCH="$1"
 
 if [ "$ARCH" = "" ]
 then
-    echo "Please specify an architecture (amd64, aarch64)"
+    echo "Please specify an architecture (x64, arm64)"
     exit 1
 fi
 
-if [ "$ARCH" = "amd64" ]; then
+if [ "$ARCH" = "x64" ]; then
     export TARGET=osx-x64
-elif [ "$ARCH" = "aarch64" ]; then
+elif [ "$ARCH" = "arm64" ]; then
     export TARGET=osx-arm64
 else
-    echo "Unexpected ARCH "$ARCH". Supported architectures: amd64, aarch64"
+    echo "Unexpected ARCH "$ARCH". Supported architectures: x64, arm64"
     exit 1
 fi
 

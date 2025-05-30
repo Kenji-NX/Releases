@@ -4,16 +4,16 @@ export ARCH="$1"
 
 if [ "$ARCH" = "" ]
 then
-    echo "Please specify an architecture (amd64, aarch64)"
+    echo "Please specify an architecture (x64, arm64)"
     exit 1
 fi
 
-if [ "$ARCH" = "amd64" ]; then
+if [ "$ARCH" = "x64" ]; then
     export TARGET=linux-x64
-elif [ "$ARCH" = "aarch64" ]; then
+elif [ "$ARCH" = "arm64" ]; then
     export TARGET=linux-arm64
 else
-    echo "Unexpected ARCH "$ARCH". Supported architectures: amd64, aarch64"
+    echo "Unexpected ARCH "$ARCH". Supported architectures: x64, arm64"
     exit 1
 fi
 
@@ -55,9 +55,9 @@ mkdir -p "$OUTDIR"
 
 appimagetool --comp zstd --mksquashfs-opt -Xcompression-level --mksquashfs-opt 21 \
     -u "$UFLAG" \
-    AppDir "$OUTDIR"/Ryujinx-$VERSION-$ARCH.AppImage
+    AppDir "$OUTDIR"/ryujinx-$VERSION-linux_$ARCH.AppImage
 
 # Move zsync file needed for delta updates
 mv ./*.AppImage.zsync "$OUTDIR"
 
-chmod a+x "$OUTDIR"/Ryujinx-$VERSION-$ARCH.AppImage
+chmod a+x "$OUTDIR"/ryujinx-$VERSION-linux_$ARCH.AppImage

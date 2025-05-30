@@ -10,16 +10,16 @@ git clone https://git.ryujinx.app/kenji-nx/ryujinx.git
 cd ryujinx
 git checkout $VERSION
 
-../macos/build.sh amd64
-../macos/build.sh aarch64
+../macos/build.sh x64
+../macos/build.sh arm64
 
 cd distribution/macos
 
-./create_app_bundle.sh ../../bin-aarch64 app-aarch64 entitlements.xml
-./create_app_bundle.sh ../../bin-amd64 app-amd64 entitlements.xml
+./create_app_bundle.sh ../../bin-arm64 app-arm64 entitlements.xml
+./create_app_bundle.sh ../../bin-x64 app-x64 entitlements.xml
 
 mkdir -p Ryujinx.app/Contents/{Frameworks,MacOS}
-cd app-aarch64
+cd app-arm64
 
 for file in `fd "Ryujinx$|dylib" Ryujinx.app -tf`
 do
@@ -32,7 +32,7 @@ do
     else
         echo $file
         echo $fileinfo
-        lipo -create $file ../app-amd64/$file -output ../$file || cp $file ../$file
+        lipo -create $file ../app-x64/$file -output ../$file || cp $file ../$file
     fi
 done
 
@@ -50,4 +50,4 @@ mkdir -p artifacts/Ryujinx.app/Contents/Resources
 cp Ryujinx.icns artifacts/Ryujinx.app/Contents/Resources
 
 cd artifacts
-tar czf Ryujinx.tar.gz Ryujinx.app
+zip -r Ryujinx.zip Ryujinx.app
