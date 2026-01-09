@@ -13,7 +13,7 @@ if [ "$ARCH" = "x64" ]; then
 elif [ "$ARCH" = "arm64" ]; then
     export TARGET=linux-arm64
 else
-    echo "Unexpected ARCH "$ARCH". Supported architectures: x64, arm64"
+    echo "Unexpected ARCH $ARCH. Supported architectures: x64, arm64"
     exit 1
 fi
 
@@ -23,7 +23,7 @@ export OUTDIR=../artifacts
 
 rm -rf $BUILDDIR
 
-dotnet publish src/Ryujinx -c Release -r $TARGET -p:PublishSingleFile=true -p:DebugSymbols=false -o $BUILDDIR
+dotnet publish src/Ryujinx -c Release -r $TARGET -p:DebugSymbols=false --self-contained -o $BUILDDIR
 
 mkdir -p ../artifacts
 cp -r $BUILDDIR ../artifacts/Ryujinx-$VERSION-$ARCH
@@ -34,8 +34,6 @@ export PATH="$PATH:$(readlink -f tools)"
 # Setup appimagetool
 wget -q -O tools/appimagetool "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
 chmod +x tools/appimagetool
-
-export UFLAG="gh-releases-zsync|Kenji-NX|Releases|latest|*-$ARCH.AppImage.zsync"
 
 ## AppImage building ##
 
@@ -53,11 +51,7 @@ chmod +x AppDir/AppRun AppDir/usr/bin/Ryujinx*
 
 mkdir -p "$OUTDIR"
 
-appimagetool --comp zstd --mksquashfs-opt -Xcompression-level --mksquashfs-opt 21 \
-    -u "$UFLAG" \
+appimagetool -n --comp zstd --mksquashfs-opt -Xcompression-level --mksquashfs-opt 21 \
     AppDir "$OUTDIR"/ryujinx-$VERSION-linux_$ARCH.AppImage
-
-# Move zsync file needed for delta updates
-mv ./*.AppImage.zsync "$OUTDIR"
 
 chmod a+x "$OUTDIR"/ryujinx-$VERSION-linux_$ARCH.AppImage

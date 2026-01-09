@@ -13,7 +13,7 @@ if [ "$ARCH" = "x64" ]; then
 elif [ "$ARCH" = "arm64" ]; then
     export TARGET=win-arm64
 else
-    echo "Unexpected ARCH "$ARCH". Supported architectures: x64, arm64"
+    echo "Unexpected ARCH $ARCH. Supported architectures: x64, arm64"
     exit 1
 fi
 
@@ -22,4 +22,4 @@ export OUTDIR=../artifacts/Ryujinx-$VERSION-$ARCH
 
 mkdir -p $OUTDIR
 
-dotnet publish src/Ryujinx -c Release -r $TARGET -p:PublishSingleFile=true -p:DebugSymbols=false -o $OUTDIR
+dotnet publish src/Ryujinx -c Release -r $TARGET -p:DebugSymbols=false --self-contained -o $OUTDIR

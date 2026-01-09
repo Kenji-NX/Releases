@@ -13,14 +13,14 @@ if [ "$ARCH" = "x64" ]; then
 elif [ "$ARCH" = "arm64" ]; then
     export TARGET=osx-arm64
 else
-    echo "Unexpected ARCH "$ARCH". Supported architectures: x64, arm64"
+    echo "Unexpected ARCH $ARCH. Supported architectures: x64, arm64"
     exit 1
 fi
 
 # TODO: nightly builds
-export BUILDDIR=bin-$ARCH
+export BUILDDIR=bin-"$ARCH"
 export OUTDIR=../artifacts
 
-rm -rf $BUILDDIR
+rm -rf "$BUILDDIR"
 
-dotnet publish src/Ryujinx -c Release -r $TARGET -p:PublishSingleFile=true -p:DebugSymbols=false -o $BUILDDIR
+dotnet publish src/Ryujinx -c Release -r $TARGET -p:DebugSymbols=false --self-contained -o $BUILDDIR
