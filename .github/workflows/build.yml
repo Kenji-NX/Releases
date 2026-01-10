@@ -40,35 +40,35 @@ jobs:
 
       - name: Upload x64 AppImage
         if: matrix.name == 'Linux'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: "AppImage (x64)"
           path: artifacts/ryujinx*x64.AppImage*
 
       - name: Upload arm64 AppImage
         if: matrix.name == 'Linux'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: "AppImage (arm64)"
           path: artifacts/ryujinx*arm64.AppImage*
 
       - name: Upload x64 zip
         if: matrix.name != 'macOS'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: "${{ matrix.name }} (x64)"
           path: artifacts/Ryujinx-${{ env.VERSION }}-x64
 
       - name: Upload arm64 zip
         if: matrix.name != 'macOS'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: "${{ matrix.name }} (arm64)"
           path: artifacts/Ryujinx-${{ env.VERSION }}-arm64
 
       - name: Upload universal app
         if: matrix.name == 'macOS'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: "macOS (universal)"
           path: artifacts/Ryujinx.zip

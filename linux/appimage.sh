@@ -25,8 +25,8 @@ rm -rf $BUILDDIR
 
 dotnet publish src/Ryujinx -c Release -r $TARGET -p:DebugSymbols=false --self-contained -o $BUILDDIR
 
-mkdir -p $OUTDIR
-cp -r $BUILDDIR $OUTDIR/Ryujinx-$VERSION-$ARCH
+mkdir -p ../artifacts
+cp -r $BUILDDIR ../artifacts/Ryujinx-$VERSION-$ARCH
 
 mkdir -p tools
 PATH=$PATH:$(readlink -f tools)
