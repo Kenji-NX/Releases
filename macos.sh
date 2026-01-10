@@ -19,7 +19,7 @@ cd distribution/macos || exit
 ./create_app_bundle.sh ../../bin-arm64 app-arm64 entitlements.xml
 ./create_app_bundle.sh ../../bin-x64 app-x64 entitlements.xml
 
-mkdir -p Ryujinx.app/Contents/{Frameworks,MacOS}
+mkdir -p Ryujinx.app/Contents/{Frameworks,MacOS,Resources}
 cd app-arm64 || exit
 
 for file in $(fd "Ryujinx$|dylib" Ryujinx.app -tf)
