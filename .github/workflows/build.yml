@@ -15,23 +15,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
-            name: "Linux"
-            script: "linux"
-          
-          - os: macos-latest
-            name: "macOS"
-            script: "macos"
-          
-          - os: windows-latest
-            name: "Windows"
-            script: "windows"
+          - { os: ubuntu-latest,  name: "Linux",   script: "linux"   }
+          - { os: macos-latest,   name: "macOS",   script: "macos"   }
+          - { os: windows-latest, name: "Windows", script: "windows" }
 
     runs-on: ${{ matrix.os }}  
     name: ${{ matrix.name }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-tags: true
           fetch-depth: 0

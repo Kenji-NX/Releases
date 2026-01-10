@@ -2,7 +2,8 @@
 
 set +e
 
-export VERSION=`git describe --tags --abbrev=0`
+VERSION=$(git describe --tags --abbrev=0)
+export VERSION
 
 brew install fd # dotnet-sdk
 
@@ -41,10 +42,9 @@ cp -r Ryujinx.app/Contents/Resources/{Ryujinx.icns,Assets.car} ../Ryujinx.app/Co
 
 cd ..
 codesign --entitlements entitlements.xml -f --deep -s - Ryujinx.app
-chmod a+c Ryujinx.app/Contents/MacOS/Ryujinx
+chmod u+x Ryujinx.app/Contents/MacOS/Ryujinx
 
-mkdir -p ../../../artifacts/Ryujinx.app
-cp -r Ryujinx.app/* ../../../artifacts/Ryujinx.app
+cp -r Ryujinx.app ../../../artifacts/
 
 cd ../../../artifacts || exit
 zip -r Ryujinx.zip Ryujinx.app

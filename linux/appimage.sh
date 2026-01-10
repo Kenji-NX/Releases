@@ -25,11 +25,12 @@ rm -rf $BUILDDIR
 
 dotnet publish src/Ryujinx -c Release -r $TARGET -p:DebugSymbols=false --self-contained -o $BUILDDIR
 
-mkdir -p ../artifacts
-cp -r $BUILDDIR ../artifacts/Ryujinx-$VERSION-$ARCH
+mkdir -p $OUTDIR
+cp -r $BUILDDIR $OUTDIR/Ryujinx-$VERSION-$ARCH
 
 mkdir -p tools
-export PATH="$PATH:$(readlink -f tools)"
+PATH=$PATH:$(readlink -f tools)
+export PATH
 
 # Setup appimagetool
 wget -q -O tools/appimagetool "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
