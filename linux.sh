@@ -2,7 +2,7 @@
 
 sudo add-apt-repository ppa:dotnet/backports
 sudo apt-get update
-sudo apt install -y desktop-file-utils appstream dotnet-sdk-10.0
+sudo apt install -y desktop-file-utils appstream dotnet-sdk-9.0 dotnet-sdk-10.0
 
 VERSION=$(git describe --tags --abbrev=0)
 export VERSION

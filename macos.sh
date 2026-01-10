@@ -44,7 +44,8 @@ cd ..
 codesign --entitlements entitlements.xml -f --deep -s - Ryujinx.app
 chmod u+x Ryujinx.app/Contents/MacOS/Ryujinx
 
-cp -r Ryujinx.app ../../../artifacts/
+mkdir -p ../../../artifacts/Ryujinx.app
+cp -r Ryujinx.app/* ../../../artifacts/Ryujinx.app
 
 cd ../../../artifacts || exit
 zip -r Ryujinx.zip Ryujinx.app
